@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -13,7 +14,8 @@ func main() {
 		fmt.Println("Error:", error)
 		return
 	}
-	words := string(content)
+	words := strings.Split(string(content), ` `)
 	wordsCount := len(words)
+	
 	fmt.Println("Total words:", wordsCount)
 }
