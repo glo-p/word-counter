@@ -4,42 +4,25 @@ import (
 	"testing"
 )
 
+type TestCase struct {
+	content  []byte
+	expected int
+}
+
 func TestCountWords(t *testing.T) {
-
-	content := []byte("Hello world")
-	expected := 2
-	actual := countWords(content)
-	if actual != expected {
-		t.Fail()
-		t.Errorf("Expected %d, but got %d", expected, actual)
-		//panic("Test failed")
+	testCases := []TestCase{
+		{[]byte("Hello world"), 2},
+		{[]byte("Hello   world"), 2},
+		{[]byte("   Hello world"), 2},
+		{[]byte("Hello world "), 2},
+		{[]byte("Hello"), 1},
+		{[]byte(""), 0},
 	}
-}
 
-func TestCountWordsEmpty(t *testing.T) {
-	content := []byte("")
-	expected := 0
-	actual := countWords(content)
-	if actual != expected {
-		t.Fail()
-		t.Errorf("Expected %d, but got %d", expected, actual)
-	}
-}
-
-func TestCountWordsMultipleSpaces(t *testing.T) {
-	content := []byte("Hello   world")
-	expected := 2
-	actual := countWords(content)
-	if actual != expected {
-		t.Errorf("Expected %d, but got %d", expected, actual)
-	}
-}
-
-func TestCountWordsLeadingSpaces(t *testing.T) {
-	content := []byte("   Hello world")
-	expected := 2
-	actual := countWords(content)
-	if actual != expected {
-		t.Errorf("Expected %d, but got %d", expected, actual)
+	for _, testCase := range testCases {
+		actual := countWords(testCase.content)
+		if actual != testCase.expected {
+			t.Errorf("Expected %d, but got %d", testCase.expected, actual)
+		}
 	}
 }
