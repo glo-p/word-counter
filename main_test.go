@@ -21,10 +21,12 @@ func TestCountWords(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		actual := countWords(testCase.content)
-		if actual != testCase.expected {
-			t.Error(testCase.name)
-			t.Errorf("Expected %d, but got %d", testCase.expected, actual)
-		}
+		t.Run(testCase.name, func(t *testing.T) {
+			actual := countWords(testCase.content)
+			if actual != testCase.expected {
+				t.Error(testCase.name)
+				t.Errorf("Expected %d, but got %d", testCase.expected, actual)
+			}
+		})
 	}
 }
