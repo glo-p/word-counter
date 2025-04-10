@@ -16,6 +16,7 @@ func main() {
 	content, error := os.ReadFile("words.txt")
 
 	if error != nil {
+		fmt.Fprintln(os.Stderr, "Error reading file:", error)
 		fmt.Println("Error:", error)
 		os.Exit(1)	
 	}
