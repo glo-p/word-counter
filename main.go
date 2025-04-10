@@ -13,11 +13,11 @@ func fasterCountWords(content []byte) int {
 
 func main() {
 	fmt.Println("Words Counter")
-	content, error := os.ReadFile("words.txt")
+	content, error := os.ReadFile("wordsd.txt")
 
 	if error != nil {
 		fmt.Println("Error:", error)
-		return
+		os.Exit(1)	
 	}
 
 	fmt.Println("Total words:", fasterCountWords(content))
