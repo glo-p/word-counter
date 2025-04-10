@@ -3,23 +3,11 @@ package main
 import (
 	"fmt"
 	"os"
-	"slices"
 	"strings"
 )
 
-func countWords(content []byte) int {
- 
-	if( len(content) == 0) {
-		return 0
-	}
-
-	words := strings.Split(string(content), ` `)
-	for i := 0; i < len(words); i++ {
-		if words[i] == "" {
-			words = slices.Delete(words, i, i+1)
-			i--
-		}
-	}
+func fasterCountWords(content []byte) int {
+	words := strings.Fields(string(content))
 	return len(words)
 }
 
@@ -32,5 +20,5 @@ func main() {
 		return
 	}
 
-	fmt.Println("Total words:", countWords(content))
+	fmt.Println("Total words:", fasterCountWords(content))
 }
